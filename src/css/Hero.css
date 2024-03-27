@@ -1,0 +1,70 @@
+.hero{
+    height: 80vh;
+    background-color:#fffcf3 ;
+    width: 100%;
+    color: #192a56;
+}
+.hero-container{
+    width: 95%;
+    height: auto;
+    margin: auto;
+ 
+    padding-top: 1rem;
+}
+.nav{
+    display: flex;
+    gap: 15rem;
+    margin-left: 3rem;
+}
+.logo{
+    font-weight: 700;
+    font-size: 2rem;
+}
+/* .logo::before, .logo::after{
+    content: "";
+    width: 100%;
+    background: #192a56;
+    height: 5px;
+    display: block;
+} */
+.list ul{
+    display: flex;
+    gap: 2rem;
+}
+
+
+
+ul li{
+    list-style: none;
+    font-weight: 500;
+}
+.hero-body{
+    display: flex;
+}
+.left-container{
+    float: left;
+    width: 50%;
+}
+.right-container{
+    width: 50%;
+    
+    
+}
+.main{
+ margin-top: 5rem;
+ margin-left: 5rem;
+}
+.main h1{
+    font-size: 3rem;
+}
+.hero-btn{
+    padding: 9px 11px;
+    border: none;
+    border-radius:2px;
+    color: #fffcf3;
+    background-color: #192a56;
+}
+.rate{
+    display: flex;
+    gap: 5rem;
+}
