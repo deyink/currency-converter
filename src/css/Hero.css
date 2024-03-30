@@ -1,11 +1,11 @@
 .hero{
-    height: 80vh;
+    height: auto;
     background-color:#fffcf3 ;
     width: 100%;
     color: #192a56;
 }
 .hero-container{
-    width: 95%;
+    width: 98%;
     height: auto;
     margin: auto;
  
@@ -40,19 +40,45 @@ ul li{
 }
 .hero-body{
     display: flex;
+    margin-top: 3rem;
+    padding-bottom: 3rem;
+    height: auto;
+    width: 100%;
+    flex-wrap: wrap;
 }
+
 .left-container{
     float: left;
-    width: 50%;
+    width: 45%;
+    /* background-color: yellow; */
+    margin: auto;
 }
+@media(max-width:990px){
+    .left-container{
+        width: 90%;
+        margin-bottom: 1rem;
+        float: left;
+    }
+}
+
 .right-container{
     width: 50%;
+    float: right;
+    /* background-color: green; */
+    margin: auto;
+    height: auto;
+    flex-wrap: wrap;
     
     
 }
+@media(max-width:990px){
+    .right-container{
+        width: 90%;
+    }
+}
 .main{
- margin-top: 5rem;
- margin-left: 5rem;
+ margin-top: 3rem;
+ margin-left: 3rem;
 }
 .main h1{
     font-size: 3rem;
