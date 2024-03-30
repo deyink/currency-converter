@@ -31,6 +31,11 @@
     display: flex;
     gap: 2rem;
 }
+@media(max-width:990px){
+    .list{
+        display: none;
+    }
+}
 
 
 
@@ -76,6 +81,9 @@ ul li{
         width: 90%;
     }
 }
+.amount input{
+    padding: 15px 35px;
+}
 .main{
  margin-top: 3rem;
  margin-left: 3rem;
@@ -83,7 +91,7 @@ ul li{
 .main h1{
     font-size: 3rem;
 }
-.hero-btn{
+.hero-btn, button{
     padding: 9px 11px;
     border: none;
     border-radius:2px;
@@ -93,4 +101,7 @@ ul li{
 .rate{
     display: flex;
     gap: 5rem;
+}
+.switch, button{
+    margin-top: 2rem;
 }

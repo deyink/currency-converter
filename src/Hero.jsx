@@ -81,7 +81,7 @@ export default function Hero() {
             <div className="right-container">
                 <div className="amount">
                     <h3>Amount</h3>
-                    <input type="text" placeholder='Enter amount' onChange={(e)=>setInput(e.target.value)} />
+                    <input type="number" placeholder='Enter amount' onChange={(e)=>setInput(e.target.value)} />
                 </div>
                 <div className="from">
                     <h3>From</h3>
