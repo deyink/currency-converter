@@ -39,9 +39,9 @@ export default function Hero() {
 
     // function to switch between currencies
     const flip = ()=>{
-        const temp = from;
+        
         setFrom(to);
-        setTo(temp);
+        setTo(from);
     }
 
   return (
