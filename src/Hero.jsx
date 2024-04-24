@@ -1,29 +1,49 @@
 import React from 'react'
 import "./css/Hero.css"
 import { useEffect, useState } from 'react'
-import Axios from 'axios'
-import Dropdown from 'react-dropdown'
-import {HiSwitchHorizontal} from 'react-icons/hi'
 import 'react-dropdown/style.css'
+import { HiSwitchHorizontal } from 'react-icons/hi';
+
 
 export default function Hero() {
-    
-    const [info, setInfo] = useState([]);
-    const [input, setInput] =useState(0);
+    const [rates, setRates] = useState();
+    const [ratesFetched, setRatesFetched] = useState(false);
+    const [input, setInput] =useState("");
     const [from, setFrom] = useState('USD');
-    const [to, setTo] = useState('Naira')
-    const [options, setOptions] = useState([]);
-    const [output, setOutput] = useState(0)
+    const [to, setTo] = useState('NGN')
+    const [output, setOutput] = useState(0);
+
+    const getRates = async () => {
+        const response = await fetch(
+            `https://v6.exchangerate-api.com/v6/0e39688e1863a8158cd2896c/latest/${from}`
+        ).then( (response)=>response.json() );
+
+        if (response.result === "success") {
+            setRates(response.conversion_rate);
+            setRatesFetched(true);
+        }
+    };
 
     // API call
+    
+    useEffect(()=>{
+       getRates(); 
+     }, [] )
 
-    // useEffect(()=>{
-    //     Axios.get(
-    //         `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${from}.json`
-    //     ).then((res)=>{
-    //         setInfo(res.data[from]);
-    //     })
-    // }, [from])
+    
+    // convert Function
+     const convert = async () => {
+  
+        const response = await fetch(
+            `https://v6.exchangerate-api.com/v6/0e39688e1863a8158cd2896c/latest/${from}`
+        ).then((response) => response.json());
+        const fetchedRates = response.conversion_rates;
+        // calculate and store the result
+        const CurrencyRate = fetchedRates[to];
+        const output = input * CurrencyRate;
+        setOutput(output);
+    };
+
 
     // function convert call when currency switches
     // useEffect(()=>{
@@ -31,11 +51,6 @@ export default function Hero() {
     //     convert();
     // }, [info])
 
-    // // convert function
-    // const convert = ()=>{
-    //     const rate = info[to];
-    //     setOutput(input * rate);
-    // }
 
     // function to switch between currencies
     const flip = ()=>{
@@ -78,32 +93,50 @@ export default function Hero() {
                  
              </div>
             </div>
+
             <div className="right-container">
                 <div className="amount">
                     <h3>Amount</h3>
-                    <input type="number" placeholder='Enter amount' onChange={(e)=>setInput(e.target.value)} />
+                    <input type="number" placeholder='Enter amount' onChange={(e)=>setInput(e.target.value)} value={input} />
                 </div>
+
                 <div className="from">
                     <h3>From</h3>
-                    <Dropdown options={options} onChange={(e)=>{setFrom(e.value)}} value={from} placeholder='from'  />
+                    <select value={from} onChange={(e)=>{setFrom(e.target.value)}}  placeholder='from'> 
+                    {ratesFetched ? (Object.keys(rates || {} ).map((currency, index)=> (
+                        <option key={index} value={currency} > {currency} </option>
+                    ))
+                ) : ( 
+                <option defaultValue > USD </option> 
+            )}
+               </select>
                 </div>
+
                 <div className="switch">
                     <HiSwitchHorizontal size="30px"
                         onClick={() => { flip() }}
                          />
                 </div>
+
                 <div className="to">
                     <h3>To</h3>
-                    <Dropdown options={options}
-                        onChange={(e) => { setTo(e.value) }}
-                        value={to} placeholder="To" />
+                    <select value={to} onChange={(e) => { setTo(e.value) }}
+                         placeholder="To" >
+                            {ratesFetched ? (Object.keys(rates || {}).map((currency, index)=> (
+                        <option key={index} value={currency} > {currency} </option>
+                    ))
+                ) : ( <option defaultValue > EUR </option>) 
+            }
+                        </select>
+
                 </div>
+
                 <div className="result">
                 <button 
-                // onClick={() => { convert() }}
+                onClick={() => convert() }
                 >Convert</button>
                 <h2>Converted Amount:</h2>
-                <p>{input + " " + from + " = " + output.toFixed(2) + " " + to}</p>
+                 
  
             </div>
  
