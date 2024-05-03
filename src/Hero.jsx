@@ -153,7 +153,7 @@ export default function Hero() {
                 </div>
 
                 <div className="switch">
-                    <HiSwitchHorizontal size="35 px"
+                    <HiSwitchHorizontal size="35px"
                         onClick={() => { flip() }}
                          />
                 </div>
