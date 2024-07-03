@@ -4,3 +4,17 @@
     background-color: #192a56;
     color: #fffcf3;
 }
+.footer-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+p, h4{
+    color: gray;
+}
+h4{
+    font-size: 16px;
+}
+p{
+    font-size: 12px;
+}

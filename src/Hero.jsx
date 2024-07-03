@@ -9,7 +9,7 @@ import  axios  from 'axios';
 
 export default function Hero() {
     const [info, setInfo] = useState([]);
-    const [options, setOptions] = useState([]);
+    const [options, setOptions] = useState({});
     const [input, setInput] =useState(0);
     const [from, setFrom] = useState('USD');
     const [to, setTo] = useState('NGN')
@@ -17,13 +17,23 @@ export default function Hero() {
 
     
 
-    useEffect( () => {
+    useEffect(  () => {
         axios.get(
             'https://v6.exchangerate-api.com/v6/0e39688e1863a8158cd2896c/latest/USD')
             .then( (res) => {
-                setInfo(res.data.conversion_rates);
+                setOptions(res.data.conversion_rates);         
+                setInfo(res.data.conversion_rates );
             })
-    }, []);
+    }, [to]);
+
+    useEffect( ()=>{
+        axios.get(
+            `https://v6.exchangerate-api.com/v6/0e39688e1863a8158cd2896c/latest/${from}`)
+            .then( (res)=>{
+                setOptions(res.data.conversion_rates);
+                setInfo(res.data.conversion_rates)
+            });
+    }, [from, to]);
 
        // covert Function
 
